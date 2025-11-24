@@ -1,0 +1,19 @@
+.md-content img {
+  display: block;
+  margin: 1rem auto;
+  max-width: 80%;
+  height: auto;
+}
+
+/* Use this class on images to force a smaller, inline-friendly size */
+.md-content img.small {
+  max-width: 400px;
+}
+
+/* Optional: inline images that should flow with text */
+.md-content img.inline {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0.4rem;
+  max-width: 400px;
+}

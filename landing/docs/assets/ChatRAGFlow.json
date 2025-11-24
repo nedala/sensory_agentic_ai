@@ -1,0 +1,556 @@
+{
+  "nodes": [
+    {
+      "id": "chatOllama_0",
+      "position": {
+        "x": -403.1603871179325,
+        "y": -41.47096955651847
+      },
+      "type": "customNode",
+      "data": {
+        "id": "chatOllama_0",
+        "label": "ChatOllama",
+        "version": 5,
+        "name": "chatOllama",
+        "type": "ChatOllama",
+        "baseClasses": [
+          "ChatOllama",
+          "ChatOllama",
+          "BaseChatModel",
+          "BaseLanguageModel",
+          "Runnable"
+        ],
+        "category": "Chat Models",
+        "description": "Chat completion using open-source LLM on Ollama",
+        "inputParams": [
+          {
+            "label": "Base URL",
+            "name": "baseUrl",
+            "type": "string",
+            "default": "http://localhost:11434",
+            "id": "chatOllama_0-input-baseUrl-string"
+          },
+          {
+            "label": "Model Name",
+            "name": "modelName",
+            "type": "string",
+            "placeholder": "llama2",
+            "id": "chatOllama_0-input-modelName-string"
+          },
+          {
+            "label": "Temperature",
+            "name": "temperature",
+            "type": "number",
+            "description": "The temperature of the model. Increasing the temperature will make the model answer more creatively. (Default: 0.8). Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 0.1,
+            "default": 0.9,
+            "optional": true,
+            "id": "chatOllama_0-input-temperature-number"
+          },
+          {
+            "label": "Allow Image Uploads",
+            "name": "allowImageUploads",
+            "type": "boolean",
+            "description": "Allow image input. Refer to the <a href=\"https://docs.flowiseai.com/using-flowise/uploads#image\" target=\"_blank\">docs</a> for more details.",
+            "default": false,
+            "optional": true,
+            "id": "chatOllama_0-input-allowImageUploads-boolean"
+          },
+          {
+            "label": "Streaming",
+            "name": "streaming",
+            "type": "boolean",
+            "default": true,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOllama_0-input-streaming-boolean"
+          },
+          {
+            "label": "JSON Mode",
+            "name": "jsonMode",
+            "type": "boolean",
+            "description": "Coerces model outputs to only return JSON. Specify in the system prompt to return JSON. Ex: Format all responses as JSON object",
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOllama_0-input-jsonMode-boolean"
+          },
+          {
+            "label": "Keep Alive",
+            "name": "keepAlive",
+            "type": "string",
+            "description": "How long to keep connection alive. A duration string (such as \"10m\" or \"24h\")",
+            "default": "5m",
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOllama_0-input-keepAlive-string"
+          },
+          {
+            "label": "Top P",
+            "name": "topP",
+            "type": "number",
+            "description": "Works together with top-k. A higher value (e.g., 0.95) will lead to more diverse text, while a lower value (e.g., 0.5) will generate more focused and conservative text. (Default: 0.9). Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 0.1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOllama_0-input-topP-number"
+          },
+          {
+            "label": "Top K",
+            "name": "topK",
+            "type": "number",
+            "description": "Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative. (Default: 40). Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOllama_0-input-topK-number"
+          },
+          {
+            "label": "Mirostat",
+            "name": "mirostat",
+            "type": "number",
+            "description": "Enable Mirostat sampling for controlling perplexity. (default: 0, 0 = disabled, 1 = Mirostat, 2 = Mirostat 2.0). Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOllama_0-input-mirostat-number"
+          },
+          {
+            "label": "Mirostat ETA",
+            "name": "mirostatEta",
+            "type": "number",
+            "description": "Influences how quickly the algorithm responds to feedback from the generated text. A lower learning rate will result in slower adjustments, while a higher learning rate will make the algorithm more responsive. (Default: 0.1) Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 0.1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOllama_0-input-mirostatEta-number"
+          },
+          {
+            "label": "Mirostat TAU",
+            "name": "mirostatTau",
+            "type": "number",
+            "description": "Controls the balance between coherence and diversity of the output. A lower value will result in more focused and coherent text. (Default: 5.0) Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 0.1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOllama_0-input-mirostatTau-number"
+          },
+          {
+            "label": "Context Window Size",
+            "name": "numCtx",
+            "type": "number",
+            "description": "Sets the size of the context window used to generate the next token. (Default: 2048) Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOllama_0-input-numCtx-number"
+          },
+          {
+            "label": "Number of GPU",
+            "name": "numGpu",
+            "type": "number",
+            "description": "The number of layers to send to the GPU(s). On macOS it defaults to 1 to enable metal support, 0 to disable. Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOllama_0-input-numGpu-number"
+          },
+          {
+            "label": "Number of Thread",
+            "name": "numThread",
+            "type": "number",
+            "description": "Sets the number of threads to use during computation. By default, Ollama will detect this for optimal performance. It is recommended to set this value to the number of physical CPU cores your system has (as opposed to the logical number of cores). Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOllama_0-input-numThread-number"
+          },
+          {
+            "label": "Repeat Last N",
+            "name": "repeatLastN",
+            "type": "number",
+            "description": "Sets how far back for the model to look back to prevent repetition. (Default: 64, 0 = disabled, -1 = num_ctx). Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOllama_0-input-repeatLastN-number"
+          },
+          {
+            "label": "Repeat Penalty",
+            "name": "repeatPenalty",
+            "type": "number",
+            "description": "Sets how strongly to penalize repetitions. A higher value (e.g., 1.5) will penalize repetitions more strongly, while a lower value (e.g., 0.9) will be more lenient. (Default: 1.1). Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 0.1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOllama_0-input-repeatPenalty-number"
+          },
+          {
+            "label": "Stop Sequence",
+            "name": "stop",
+            "type": "string",
+            "rows": 4,
+            "placeholder": "AI assistant:",
+            "description": "Sets the stop sequences to use. Use comma to seperate different sequences. Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOllama_0-input-stop-string"
+          },
+          {
+            "label": "Tail Free Sampling",
+            "name": "tfsZ",
+            "type": "number",
+            "description": "Tail free sampling is used to reduce the impact of less probable tokens from the output. A higher value (e.g., 2.0) will reduce the impact more, while a value of 1.0 disables this setting. (Default: 1). Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 0.1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "chatOllama_0-input-tfsZ-number"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Cache",
+            "name": "cache",
+            "type": "BaseCache",
+            "optional": true,
+            "id": "chatOllama_0-input-cache-BaseCache"
+          }
+        ],
+        "inputs": {
+          "cache": "",
+          "baseUrl": "http://ollama-backend:11434",
+          "modelName": "qwen2.5vl:7b",
+          "temperature": "0.0",
+          "allowImageUploads": "",
+          "streaming": true,
+          "jsonMode": false,
+          "keepAlive": "1m",
+          "topP": "",
+          "topK": "",
+          "mirostat": "",
+          "mirostatEta": "",
+          "mirostatTau": "",
+          "numCtx": "",
+          "numGpu": "",
+          "numThread": "",
+          "repeatLastN": "",
+          "repeatPenalty": "1.3",
+          "stop": "\"\\n\\n\", \"\\n###\", \"Assistant:\", \"User:\", \"System:\", \"\\r\\n\\r\\n\", \"```\"",
+          "tfsZ": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "chatOllama_0-output-chatOllama-ChatOllama|ChatOllama|BaseChatModel|BaseLanguageModel|Runnable",
+            "name": "chatOllama",
+            "label": "ChatOllama",
+            "description": "Chat completion using open-source LLM on Ollama",
+            "type": "ChatOllama | ChatOllama | BaseChatModel | BaseLanguageModel | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 681,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": -403.1603871179325,
+        "y": -41.47096955651847
+      }
+    },
+    {
+      "id": "bufferWindowMemory_0",
+      "position": {
+        "x": 343.1577093542559,
+        "y": -71.61693235734268
+      },
+      "type": "customNode",
+      "data": {
+        "id": "bufferWindowMemory_0",
+        "label": "Buffer Window Memory",
+        "version": 2,
+        "name": "bufferWindowMemory",
+        "type": "BufferWindowMemory",
+        "baseClasses": [
+          "BufferWindowMemory",
+          "BaseChatMemory",
+          "BaseMemory"
+        ],
+        "category": "Memory",
+        "description": "Uses a window of size k to surface the last k back-and-forth to use as memory",
+        "inputParams": [
+          {
+            "label": "Size",
+            "name": "k",
+            "type": "number",
+            "default": "4",
+            "description": "Window of size k to surface the last k back-and-forth to use as memory.",
+            "id": "bufferWindowMemory_0-input-k-number"
+          },
+          {
+            "label": "Session Id",
+            "name": "sessionId",
+            "type": "string",
+            "description": "If not specified, a random id will be used. Learn <a target=\"_blank\" href=\"https://docs.flowiseai.com/memory#ui-and-embedded-chat\">more</a>",
+            "default": "",
+            "optional": true,
+            "additionalParams": true,
+            "id": "bufferWindowMemory_0-input-sessionId-string"
+          },
+          {
+            "label": "Memory Key",
+            "name": "memoryKey",
+            "type": "string",
+            "default": "chat_history",
+            "additionalParams": true,
+            "id": "bufferWindowMemory_0-input-memoryKey-string"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "k": "2",
+          "sessionId": "",
+          "memoryKey": "chat_history"
+        },
+        "outputAnchors": [
+          {
+            "id": "bufferWindowMemory_0-output-bufferWindowMemory-BufferWindowMemory|BaseChatMemory|BaseMemory",
+            "name": "bufferWindowMemory",
+            "label": "BufferWindowMemory",
+            "description": "Uses a window of size k to surface the last k back-and-forth to use as memory",
+            "type": "BufferWindowMemory | BaseChatMemory | BaseMemory"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 337,
+      "positionAbsolute": {
+        "x": 343.1577093542559,
+        "y": -71.61693235734268
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "conversationChain_0",
+      "position": {
+        "x": 948.1927983307091,
+        "y": 284.3104684364473
+      },
+      "type": "customNode",
+      "data": {
+        "id": "conversationChain_0",
+        "label": "Conversation Chain",
+        "version": 3,
+        "name": "conversationChain",
+        "type": "ConversationChain",
+        "baseClasses": [
+          "ConversationChain",
+          "LLMChain",
+          "BaseChain",
+          "Runnable"
+        ],
+        "category": "Chains",
+        "description": "Chat models specific conversational chain with memory",
+        "inputParams": [
+          {
+            "label": "System Message",
+            "name": "systemMessagePrompt",
+            "type": "string",
+            "rows": 4,
+            "description": "If Chat Prompt Template is provided, this will be ignored",
+            "additionalParams": true,
+            "optional": true,
+            "default": "The following is a friendly conversation between a human and an AI. The AI is talkative and provides lots of specific details from its context. If the AI does not know the answer to a question, it truthfully says it does not know.",
+            "placeholder": "The following is a friendly conversation between a human and an AI. The AI is talkative and provides lots of specific details from its context. If the AI does not know the answer to a question, it truthfully says it does not know.",
+            "id": "conversationChain_0-input-systemMessagePrompt-string"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Chat Model",
+            "name": "model",
+            "type": "BaseChatModel",
+            "id": "conversationChain_0-input-model-BaseChatModel"
+          },
+          {
+            "label": "Memory",
+            "name": "memory",
+            "type": "BaseMemory",
+            "id": "conversationChain_0-input-memory-BaseMemory"
+          },
+          {
+            "label": "Chat Prompt Template",
+            "name": "chatPromptTemplate",
+            "type": "ChatPromptTemplate",
+            "description": "Override existing prompt with Chat Prompt Template. Human Message must includes {input} variable",
+            "optional": true,
+            "id": "conversationChain_0-input-chatPromptTemplate-ChatPromptTemplate"
+          },
+          {
+            "label": "Input Moderation",
+            "description": "Detect text that could generate harmful output and prevent it from being sent to the language model",
+            "name": "inputModeration",
+            "type": "Moderation",
+            "optional": true,
+            "list": true,
+            "id": "conversationChain_0-input-inputModeration-Moderation"
+          }
+        ],
+        "inputs": {
+          "model": "{{chatOllama_0.data.instance}}",
+          "memory": "{{bufferWindowMemory_0.data.instance}}",
+          "chatPromptTemplate": "{{chatPromptTemplate_0.data.instance}}",
+          "inputModeration": "",
+          "systemMessagePrompt": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "conversationChain_0-output-conversationChain-ConversationChain|LLMChain|BaseChain|Runnable",
+            "name": "conversationChain",
+            "label": "ConversationChain",
+            "description": "Chat models specific conversational chain with memory",
+            "type": "ConversationChain | LLMChain | BaseChain | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 440,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 948.1927983307091,
+        "y": 284.3104684364473
+      },
+      "dragging": false
+    },
+    {
+      "id": "chatPromptTemplate_0",
+      "position": {
+        "x": 325.6015134130405,
+        "y": 426.1400279565245
+      },
+      "type": "customNode",
+      "data": {
+        "id": "chatPromptTemplate_0",
+        "label": "Chat Prompt Template",
+        "version": 2,
+        "name": "chatPromptTemplate",
+        "type": "ChatPromptTemplate",
+        "baseClasses": [
+          "ChatPromptTemplate",
+          "BaseChatPromptTemplate",
+          "BasePromptTemplate",
+          "Runnable"
+        ],
+        "category": "Prompts",
+        "description": "Schema to represent a chat prompt",
+        "inputParams": [
+          {
+            "label": "System Message",
+            "name": "systemMessagePrompt",
+            "type": "string",
+            "rows": 4,
+            "placeholder": "You are a helpful assistant that translates {input_language} to {output_language}.",
+            "id": "chatPromptTemplate_0-input-systemMessagePrompt-string"
+          },
+          {
+            "label": "Human Message",
+            "name": "humanMessagePrompt",
+            "description": "This prompt will be added at the end of the messages as human message",
+            "type": "string",
+            "rows": 4,
+            "placeholder": "{text}",
+            "id": "chatPromptTemplate_0-input-humanMessagePrompt-string"
+          },
+          {
+            "label": "Format Prompt Values",
+            "name": "promptValues",
+            "type": "json",
+            "optional": true,
+            "acceptVariable": true,
+            "list": true,
+            "id": "chatPromptTemplate_0-input-promptValues-json"
+          },
+          {
+            "label": "Messages History",
+            "name": "messageHistory",
+            "description": "Add messages after System Message. This is useful when you want to provide few shot examples",
+            "type": "tabs",
+            "tabIdentifier": "selectedMessagesTab",
+            "additionalParams": true,
+            "default": "messageHistoryCode",
+            "tabs": [
+              {
+                "label": "Add Messages (Code)",
+                "name": "messageHistoryCode",
+                "type": "code",
+                "hideCodeExecute": true,
+                "codeExample": "const { AIMessage, HumanMessage, ToolMessage } = require('@langchain/core/messages');\n\nreturn [\n    new HumanMessage(\"What is 333382 🦜 1932?\"),\n    new AIMessage({\n        content: \"\",\n        tool_calls: [\n        {\n            id: \"12345\",\n            name: \"calulator\",\n            args: {\n                number1: 333382,\n                number2: 1932,\n                operation: \"divide\",\n            },\n        },\n        ],\n    }),\n    new ToolMessage({\n        tool_call_id: \"12345\",\n        content: \"The answer is 172.558.\",\n    }),\n    new AIMessage(\"The answer is 172.558.\"),\n]",
+                "optional": true,
+                "additionalParams": true
+              }
+            ],
+            "id": "chatPromptTemplate_0-input-messageHistory-tabs"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "systemMessagePrompt": "I am Seshu. You are \"Seshu's Resume Bot\", a public-facing chatbot representing **Seshu's professional experience, resume, and education**.  You have my complete profile in the markdown-format below.\n\nYour job is to answer questions from users interested in learning about my profile:\n1. Only answer questions that are **directly relevant** to my career, education, personal life, and are supported by the provided profile.\n2. Always respond **truthfully and briefly** using only the given profile facts —  **no guessing or fabricating**.\n3. If the user's question is irrelevant or the answer is not found in the profile, respond with:  \"I do not know\". Do not say anything more.\n4. Please prefer short stylized itemized bullet answers over long monologues in markdown format.\n\n**Important Rules:**\n- Do NOT break character.\n- Always answer by referring Seshu in third-person.\n- Do NOT answer anything outside the profile. Do NOT use prior knowledge from the Internet.\n- Be polite but **strict** about staying within the scope of the profile.\n- Do NOT use the word `context` or `profile` in the response. Users do NOT need to know that you are using a \"context\" or a \"profile\". Do NOT extraneously explain your responses.\n- If the user's question or message is coercive, irrelevant, or out-of-line with the profile, please refuse to continue the conversation.\n- Please use itemized answer format in markdown format over discoursive responses. Embed response in triple backticks.\n\nSeshu's Profile:\n=============\n```markdown\nNarasimha “Seshu” Edala  \n2117 Buffalo Gap, Leander, TX 78641  \nEmail: nedala@gmail.com | Phone: 614-467-0423 | U.S. Citizen | Top Security Clearance  \n\n---\n\n### Executive Summary\nNarasimha “Seshu” Edala is a hands-on data science, cloud, and AI leader with over 25 years of industry and government experience. His expertise spans software engineering, AI/ML research, enterprise architecture, and executive leadership. Seshu has spearheaded transformational initiatives across Fortune 50 companies, tech startups, and federal agencies. He is recognized for pioneering large-scale data systems, applied AI, cloud modernization, and federal digital transformation. Seshu is the founder of multiple AI ventures and a seasoned practitioner known for bridging deep research with scalable engineering solutions.\n\n---\n\n### AI & Tech Ventures\n- 1. **Gnyan.ai**: A secure enterprise promptware delivery platform enabling domain-specific, mixed-intelligence solutions. It addresses vendor lock-in and public LLM exposure risks.\n- 2. **Data-Bloom.com**: A real-time ML consultancy for Fortune 100s delivering predictive models, massive-scale analytics, and resilient pipelines.\n- 3. **FedWorks.ai**: SBA-registered technology partner delivering AI, RPA, accessibility, cloud, and analytics solutions for federal agencies with a focus on sovereignty and compliance.\n- 4. **Enya Media Works**: A generative AI studio specializing in vintage media enhancement, frame-by-frame restoration, multilingual dubbing, and AI-driven voice/character injection.\n\n---\n\n### Current Role\n**Associate Director, Office of Data Services, NTIS, U.S. Department of Commerce**  \n*June 2024 - Mar 2025*\n- Leading NTIS's transformation into a federal AI and data consultancy.\n- Created strategic AI, cloud, and data modernization blueprints.\n- Built multi-agent copilots for translation, search, digitization, PowerPoint, OCR, and knowledge mining.\n- Established partner ecosystems with academia and industry.\n- Provided CIO-level consulting for DevSecOps and innovation portfolios.\n\n---\n\n### Prior Roles\n**Principal AI Consultant, Mantech | DHS USCBP TASPD**  \n*2023 - 2024*  \n- Built syndicate linkgraph models for FinCEN financial crime.  \n- Deployed SONAR synthetic narcotic screening AI.  \n- Developed HTS tariff ML segmentation, secure GPT clones, and generative AI analytics hub.\n\n---\n\n**Principal AI Engineer, Hertz Corporation**  \n*2023 - 2024*  \n- Resolved 5x CRM duplication with MDM pipelines.  \n- Delivered natural language BI analytics and semantic cataloging tools.\n\n---\n\n**Senior Data Architect, Raytheon Intelligence & Space**  \n*2022 - 2023*  \n- Migrated SQL/PowerBI to Azure-native stack.  \n- Built PFEP digital twins, MTBF models, and optimized MRP cycle-time analytics.\n\n---\n\n**Principal Program Manager, Microsoft Bing**  \n*2021 - 2022*  \n- Scaled Bing’s index to 1 trillion pages.  \n- Led embedding quantization and hybrid semantic indexing R&D.\n\n---\n\n**Director, EDW Modernization, Hewlett Packard Enterprise**  \n*2020 - 2021*  \n- Rescued a $16M failed EDW cloud migration using ANTLR and Spark Delta Lake.  \n- Migrated 3PB data and 40K daily reports at 30x lower cost.\n\n---\n\n**Partner Consultant, Google Cloud (via SpringML)**  \n*2020*  \n- Built ML pipelines and conducted benchmarking for Colab vs. Databricks.  \n- Containerized services with Kubernetes & Istio.\n\n--- \n\n**Director of Data Science, Amex Global Business Travel**  \n*2017 - 2020*  \n- Built the AI@GBT mission including Trip Recommender, Traveler DNA, and crisis response systems.  \n- Created the “HawkEye” observability system and multiple digital copilots.\n\n---\n\n**Senior Manager, Big Data Programs, Intel Corp**  \n*2013 - 2017*  \n- Created Intel's Integrated Analytics Hub ($600M savings).  \n- Built SCADA interfaces, yield analytics, and DevOps SOPs.\n\n---\n\n**Chief Data Scientist, Manta Media**  \n*2012 - 2013*  \n- Built fraud detection, SEO optimization, and deduplication systems, generating $5M in new revenue.\n\n---\n\n**Senior Research Scientist, LexisNexis R&D**  \n*2004 - 2012*  \n- Migrated infrastructure to HPCC; saved $130M.  \n- Built semantic deduplication, personalization, and eDiscovery systems.\n\n---\n\n**Software Engineer, Intel Corp**  \n*1999 - 2002*  \n- Contributed to SOAP/UDDI/.NET standards.  \n- Developed x64 benchmarks, mobile platforms, and Symbian OS architecture.\n\n---\n\n### Education\n- **Ph.D. Candidate (ABD)**, Computer Science, Wright State University (2002–2004)  \n  *GPA: 4.0. Research in locality-preserving hashing, high-dimensional clustering. Pursued PhD with wife Lavanya, both maintaining 4.0 GPA before Seshu left for a senior industry role.*\n\n- **M.S.**, Human Factors & Systems Engineering, Wright State University (1997–1999)  \n  *GPA: 3.7. DAGSI scholar. Arrived in the U.S. in September 1997 on F1 visa. Graduate Research Assistant focused on UI, decision modeling for USAF logistics, UAV C2 strategy.*\n\n- **B.Tech.**, Mechanical Engineering, JNTU Kakinada, India (1993–1997)  \n  *University Valedictorian.*\n\n---\n\n### Technical Expertise Snapshot\n- **Data Engineering**: Spark, Delta Lake, Snowflake, BigQuery, Kafka, HBase, DataFlow, Synapse  \n- **Cloud Platforms**: Azure, AWS, GCP; Kubernetes, Docker, Terraform, Istio, ArgoCD  \n- **AI/ML**: RAG pipelines, GPT copilots, MLflow, Vertex AI, SageMaker, recommender systems, anomaly detection  \n- **Search Systems**: Bing, ElasticSearch, HPCC, semantic indexing, UIMA, OWL  \n- **Business Intelligence**: Power BI, Tableau, Looker, what-if dashboards, semantic data cataloging  \n- **Security/Compliance**: FedRAMP, HIPAA, GDPR, ITAR, Zero Trust, DLP, access governance  \n- **Languages**: Python, Scala, SQL, Java, C#, R, Prolog, Lisp\n\n---\n\n### Key Accomplishments\n- Former Federal, Microsoft, Intel, Google, HPE, and Amex employee that held professional leadership roles\n- Reduced HPE cloud migration cost from $16M to $500K.  \n- Scaled Bing’s index from 400B to 1 trillion pages.  \n- Created Intel IAH saving $600M.  \n- Delivered GBT Trip Recommender generating $4M+ ARR.  \n- Deployed $B DoD logistics models and copilots.  \n- Built sovereign LLM copilots for DHS and NTIS.  \n- Holds 12 international patents in AI, search, and information systems.  \n- Led 25+ enterprise-scale AI/data platforms across industries.\n\n---\n\n### Personal Note\nSeshu married Lavanya Koppaka in July 2001 and continue to raise their two daughters Sri and Om. Together, Lavanya and Seshu pursued advanced studies at Wright State University and have since shared a career path steeped in engineering and innovation. Seshu remains open to relocation and collaboration, especially for mission-driven work and purposeful leadership environments.\n\n---\n\n### Contact\nEmail: nedala@gmail.com | Phone: 614-467-0423  \nResume: [https://seshu.gnyan.ai:8443/nedala.pdf](https://seshu.gnyan.ai:8443/nedala.pdf)  \nLocation: Open to relocation from Austin, TX  \nStatus: Open to career opportunities\n\n---\n\n*End of Seshu's Profile*\n```\n=============\n\nREMEMBER: If there is no relevant information in the profile that answers the user's question, just say \"I do not know\". Never make up answers or go beyond the scope. Do not overthink. Now answer the user's question below. Embed response in triple backticks.\n```markdown\n\n",
+          "humanMessagePrompt": "User's Question: `{input}`\nShort Answer: ",
+          "promptValues": "",
+          "messageHistory": "messageHistoryCode",
+          "messageHistoryCode": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "chatPromptTemplate_0-output-chatPromptTemplate-ChatPromptTemplate|BaseChatPromptTemplate|BasePromptTemplate|Runnable",
+            "name": "chatPromptTemplate",
+            "label": "ChatPromptTemplate",
+            "description": "Schema to represent a chat prompt",
+            "type": "ChatPromptTemplate | BaseChatPromptTemplate | BasePromptTemplate | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 747,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 325.6015134130405,
+        "y": 426.1400279565245
+      },
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "bufferWindowMemory_0",
+      "sourceHandle": "bufferWindowMemory_0-output-bufferWindowMemory-BufferWindowMemory|BaseChatMemory|BaseMemory",
+      "target": "conversationChain_0",
+      "targetHandle": "conversationChain_0-input-memory-BaseMemory",
+      "type": "buttonedge",
+      "id": "bufferWindowMemory_0-bufferWindowMemory_0-output-bufferWindowMemory-BufferWindowMemory|BaseChatMemory|BaseMemory-conversationChain_0-conversationChain_0-input-memory-BaseMemory"
+    },
+    {
+      "source": "chatOllama_0",
+      "sourceHandle": "chatOllama_0-output-chatOllama-ChatOllama|ChatOllama|BaseChatModel|BaseLanguageModel|Runnable",
+      "target": "conversationChain_0",
+      "targetHandle": "conversationChain_0-input-model-BaseChatModel",
+      "type": "buttonedge",
+      "id": "chatOllama_0-chatOllama_0-output-chatOllama-ChatOllama|ChatOllama|BaseChatModel|BaseLanguageModel|Runnable-conversationChain_0-conversationChain_0-input-model-BaseChatModel"
+    },
+    {
+      "source": "chatPromptTemplate_0",
+      "sourceHandle": "chatPromptTemplate_0-output-chatPromptTemplate-ChatPromptTemplate|BaseChatPromptTemplate|BasePromptTemplate|Runnable",
+      "target": "conversationChain_0",
+      "targetHandle": "conversationChain_0-input-chatPromptTemplate-ChatPromptTemplate",
+      "type": "buttonedge",
+      "id": "chatPromptTemplate_0-chatPromptTemplate_0-output-chatPromptTemplate-ChatPromptTemplate|BaseChatPromptTemplate|BasePromptTemplate|Runnable-conversationChain_0-conversationChain_0-input-chatPromptTemplate-ChatPromptTemplate"
+    }
+  ]
+}

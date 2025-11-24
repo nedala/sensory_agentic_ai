@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>$(DEVELOPMENT_LANGUAGE)</string>
+    <key>CFBundleDisplayName</key>
+    <string>Case Management System</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>case_management_system</string>
+    <key>CFBundleShortVersionString</key>
+    <string>$(FLUTTER_BUILD_NAME)</string>
+    <key>CFBundleVersion</key>
+    <string>$(FLUTTER_BUILD_NUMBER)</string>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
+    <key>UIMainStoryboardFile</key>
+    <string>Main</string>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+
+    <!-- Permissions Required by the Application -->
+    
+    <!-- Camera Access -->
+    <key>NSCameraUsageDescription</key>
+    <string>This app needs camera access to scan documents and capture photos.</string>
+    
+    <!-- Microphone Access -->
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app needs microphone access for voice recording and handling audio inputs.</string>
+    
+    <!-- Photo Library Access -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app needs access to the photo library to display and save images.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>This app needs permission to add photos to the photo library.</string>
+    
+    <!-- Contacts Access -->
+    <key>NSContactsUsageDescription</key>
+    <string>This app needs access to your contacts to manage client and business contact information.</string>
+    
+    <!-- File Provider Access -->
+    <key>NSFileProviderDomainUsageDescription</key>
+    <string>This app needs access to your files to manage and organize case documents and attachments.</string>
+    <key>NSFileProviderPresenceUsageDescription</key>
+    <string>This app needs access to your files to check the presence of documents and ensure data consistency.</string>
+    
+    <!-- Bluetooth Access (For accessories like styluses) -->
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>This app needs access to Bluetooth to connect to external devices like styluses or inking accessories.</string>
+    
+    <!-- Location Access -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This app needs access to your location to tag documents and files with geolocation data.</string>
+    
+    <!-- Document Browser Access -->
+    <key>NSDocumentBrowserUsageDescription</key>
+    <string>This app needs access to your files for browsing and managing case documents.</string>
+    
+    <!-- Tracking and Analytics -->
+    <key>NSUserTrackingUsageDescription</key>
+    <string>This app uses tracking to provide personalized experiences and analytics.</string>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+</dict>
+</plist>

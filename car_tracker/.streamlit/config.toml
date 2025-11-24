@@ -1,0 +1,15 @@
+[server]
+runOnSave = false
+folderWatchBlacklist = ["./*", "app.py"]
+
+[theme]
+primaryColor="#4F46E5"
+backgroundColor="#F9FAFB"
+secondaryBackgroundColor="#FFFFFF"
+textColor="#111827"
+font="inter"
+
+[server]
+headless = true
+enableCORS = false
+enableXsrfProtection = true

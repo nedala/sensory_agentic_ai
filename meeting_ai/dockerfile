@@ -1,0 +1,24 @@
+# Use the official Python image with a version that supports Whisper (Python 3.8 or newer)
+FROM nvcr.io/nvidia/pytorch:24.08-py3
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    libsndfile1-dev libsndfile1 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python packages listed in requirements.txt
+RUN pip3 install --upgrade pip
+
+# Copy the requirements.txt into the container
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
+RUN pip3 install llama_index && pip3 uninstall apex -y
+# Expose the port on which the app will run
+EXPOSE 3880
+
+# Command to run the streamlit app
+CMD ["streamlit", "run", "record.py", "--server.port=3880", "--server.enableCORS=true", "--server.enableXsrfProtection=false"]

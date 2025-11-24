@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>WhisperLive Pro</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>WhisperLive Pro</h1>
+    </div>
+    <div class="badge">Live transcript</div>
+  </header>
+
+  <div class="controls-row">
+    <button id="micBtn" class="btn-primary" data-state="idle">
+      <span class="icon icon-pulse" id="micIcon" data-state="idle"></span>
+      <span id="micLabel">Start</span>
+    </button>
+
+    <button id="copyBtn" class="btn-secondary">
+      Copy
+    </button>
+
+    <button id="settingsBtn" class="btn-text">
+      Settings
+    </button>
+  </div>
+
+  <div id="status">Idle</div>
+
+  <section id="transcript-card">
+    <div class="transcript-label">Transcript</div>
+    <div id="transcript"></div>
+  </section>
+
+  <script src="popup.js"></script>
+</body>
+</html>

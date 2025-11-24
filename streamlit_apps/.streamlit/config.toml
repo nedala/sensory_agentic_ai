@@ -1,0 +1,3 @@
+[watch]
+# Only watch Python files for hot reload
+ignore = ["*.md", "*.json", "*.csv", "*.yml", "*.yaml", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.svg", "*.js", "*.ts", "*.css", "*.html"]

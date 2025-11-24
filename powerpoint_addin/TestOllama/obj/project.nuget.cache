@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "nzXYX0M9JB1UQZ6XGwLAflRa2opqVnrKGPJQK1QQKc5cGq8ORzdECferol5YKWMY3dkSjYwJv9PxYIADZ8FkVQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\edala\\source\\repos\\TestOllama\\TestOllama.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\edala\\.nuget\\packages\\spectre.console\\0.48.0\\spectre.console.0.48.0.nupkg.sha512",
+    "C:\\Users\\edala\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512"
+  ],
+  "logs": []
+}

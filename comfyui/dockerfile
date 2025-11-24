@@ -1,0 +1,19 @@
+FROM pytorch/pytorch:2.5.1-cuda12.1-cudnn9-runtime
+
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+WORKDIR /opt/comfy
+
+# Install comfy-cli globally (no venv to simplify)
+RUN pip install --upgrade pip && pip install comfy-cli
+
+# Preinstall ComfyUI into /opt/comfy/ComfyUI
+RUN comfy --skip-prompt tracking disable && \
+    comfy --skip-prompt --workspace=/opt/comfy/ComfyUI install --nvidia
+
+EXPOSE 8188
+
+# Use shell form ENTRYPOINT so we can chain commands
+ENTRYPOINT comfy --workspace=/opt/comfy/ComfyUI --skip-prompt tracking disable && \
+           comfy --workspace=/opt/comfy/ComfyUI --skip-prompt launch -- \
+                 --listen 0.0.0.0 --port 8188 \
+                 --use-split-cross-attention

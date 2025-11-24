@@ -1,0 +1,191 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "Spectre.Console/0.48.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Memory": "4.5.5"
+        },
+        "compile": {
+          "lib/net8.0/Spectre.Console.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Spectre.Console.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.Memory/4.5.5": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/_._": {}
+        }
+      },
+      "OllamaAPI/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/OllamaAPI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/OllamaAPI.dll": {}
+        }
+      },
+      "PoPilotAddin/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "OllamaAPI": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PoPilotAddin.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PoPilotAddin.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Spectre.Console/0.48.0": {
+      "sha512": "4Mc1UT7Azgtyb8FyNwK5FZmoZbKuT5PmY7ZwaKUytjD5kGFMNBACpOZTwYtkuY377YkYtZYBeDDTJUwTW86QXw==",
+      "type": "package",
+      "path": "spectre.console/0.48.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net6.0/Spectre.Console.dll",
+        "lib/net6.0/Spectre.Console.xml",
+        "lib/net7.0/Spectre.Console.dll",
+        "lib/net7.0/Spectre.Console.xml",
+        "lib/net8.0/Spectre.Console.dll",
+        "lib/net8.0/Spectre.Console.xml",
+        "lib/netstandard2.0/Spectre.Console.dll",
+        "lib/netstandard2.0/Spectre.Console.xml",
+        "small-logo.png",
+        "spectre.console.0.48.0.nupkg.sha512",
+        "spectre.console.nuspec"
+      ]
+    },
+    "System.Memory/4.5.5": {
+      "sha512": "XIWiDvKPXaTveaB7HVganDlOCRoj03l+jrwNvcge/t8vhGYKvqV+dMv6G4SAX2NoNmN0wZfVPTAlFwZcZvVOUw==",
+      "type": "package",
+      "path": "system.memory/4.5.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Memory.dll",
+        "lib/net461/System.Memory.xml",
+        "lib/netcoreapp2.1/_._",
+        "lib/netstandard1.1/System.Memory.dll",
+        "lib/netstandard1.1/System.Memory.xml",
+        "lib/netstandard2.0/System.Memory.dll",
+        "lib/netstandard2.0/System.Memory.xml",
+        "ref/netcoreapp2.1/_._",
+        "system.memory.4.5.5.nupkg.sha512",
+        "system.memory.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "OllamaAPI/1.0.0": {
+      "type": "project",
+      "path": "../OllamaAPI/OllamaAPI.csproj",
+      "msbuildProject": "../OllamaAPI/OllamaAPI.csproj"
+    },
+    "PoPilotAddin/1.0.0": {
+      "type": "project",
+      "path": "../PoPilotAddin/PoPilotAddin.csproj",
+      "msbuildProject": "../PoPilotAddin/PoPilotAddin.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "OllamaAPI >= 1.0.0",
+      "PoPilotAddin >= 1.0.0",
+      "Spectre.Console >= 0.48.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\edala\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\edala\\source\\repos\\TestOllama\\TestOllama.csproj",
+      "projectName": "TestOllama",
+      "projectPath": "C:\\Users\\edala\\source\\repos\\TestOllama\\TestOllama.csproj",
+      "packagesPath": "C:\\Users\\edala\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\edala\\source\\repos\\TestOllama\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\edala\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "C:\\Users\\edala\\source\\repos\\OllamaAPI\\OllamaAPI.csproj": {
+              "projectPath": "C:\\Users\\edala\\source\\repos\\OllamaAPI\\OllamaAPI.csproj"
+            },
+            "C:\\Users\\edala\\source\\repos\\PoPilotAddin\\PoPilotAddin.csproj": {
+              "projectPath": "C:\\Users\\edala\\source\\repos\\PoPilotAddin\\PoPilotAddin.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "dependencies": {
+          "Spectre.Console": {
+            "target": "Package",
+            "version": "[0.48.0, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

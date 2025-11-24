@@ -1,0 +1,4 @@
+# Ignore all folders and files with 'model' in the name
+**/*model*/
+**/*model*/**
+demo_central.zip

@@ -1,0 +1,348 @@
+services:
+  ollama-backend:
+    image: ollama-backend:latest
+    container_name: ollama-backend
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+      - OLLAMA_MODELS=/root/.ollama/models
+    restart: unless-stopped
+    devices:
+      - "/dev/dri"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia # Expose CUDA acceleration
+              count: 1
+              capabilities: [ gpu ]
+    volumes:
+      - ./ollama_models:/root/.ollama/models
+    command: "ollama serve"
+    networks:
+      - demo_net
+  text-backend-setup:
+    image: ollama-backend:latest
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+      - OLLAMA_MODELS=/root/.ollama/models
+      - MODEL_NAME=nomic-embed-text
+    restart: "no"
+    volumes:
+      - ./ollama_models:/root/.ollama/models
+    command: "/setup.sh"
+    networks:
+      - demo_net
+  qwen-backend-setup:
+    image: ollama-backend:latest
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+      - OLLAMA_MODELS=/root/.ollama/models
+      - MODEL_NAME=qwen2.5vl:7b
+    restart: "no"
+    volumes:
+      - ./ollama_models:/root/.ollama/models
+    command: "/setup.sh"
+    networks:
+      - demo_net
+  qwencoder-backend-setup:
+    image: ollama-backend:latest
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+      - OLLAMA_MODELS=/root/.ollama/models
+      - MODEL_NAME=qwen3-coder:30b
+    restart: "no"
+    volumes:
+      - ./ollama_models:/root/.ollama/models
+    command: "/setup.sh"
+    networks:
+      - demo_net
+  docling:
+    image: quay.io/docling-project/docling-serve:latest
+    container_name: docling-serve
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    environment:
+      DOCLING_SERVE_ENABLE_UI: "1"
+      DOCLING_SERVE_ENABLE_REMOTE_SERVICES: "true"
+      UVICORN_WORKERS: "1"
+      HF_HOME: "/models/hf"
+      HF_HUB_CACHE: "/models/hf/hub"
+    volumes:
+      - ./hf_models/models:/models
+      - ./hf_models/cache:/root/.cache
+    devices:
+      - "/dev/dri"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia # Expose CUDA acceleration
+              count: 1
+              capabilities: [ gpu ]
+    networks:
+      - demo_net
+
+  whisperserver:
+    image: ghcr.io/collabora/whisperlive-gpu:latest
+    container_name: whisperserver
+    volumes:
+      - ./whisper_models:/root/.cache:delegated
+    devices:
+      - "/dev/dri"
+      - "/dev/snd:/dev/snd"
+    group_add:
+      - audio
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia # Expose CUDA acceleration
+              count: 1
+              capabilities: [ gpu ]
+    ports:
+      - "9090:9090"
+    networks:
+      - demo_net
+  whisperlive:
+    build:
+      context: ./whisperlive
+    container_name: whisperlive
+    volumes:
+      - ./whisperlive:/app:delegated
+    ports:
+      - "18501:8501"
+    networks:
+      - demo_net
+    depends_on:
+      - whisperserver
+
+  meeting_ai_app:
+    build:
+      context: ./meeting_ai
+    container_name: meeting_ai
+    ports:
+      - "3880:3880"
+    shm_size: '4gb'
+    volumes:
+      - ./meeting_ai:/app
+      - ./meeting_ai/config:/config/
+      - ./nemo_models:/root/.cache/torch/NeMo
+    restart: unless-stopped
+    command: "streamlit run record.py --server.port=3880 --server.enableCORS=false --server.enableXsrfProtection=false"
+    environment:
+      - BASE_URL=http://ollama-backend:11434
+      - MODEL_NAME=qwen2.5vl:7b
+      - NEMO_DONT_USE_DISTRIBUTED_ADAM=1
+      - NEMO_VALIDATE_OPTIMIZER_IMPORTS=0
+      - NEMO_IMPORT_APEX=0
+    devices:
+      - "/dev/dri"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia # Expose CUDA acceleration
+              count: 1
+              capabilities: [ gpu ]
+    networks:
+      - demo_net
+    depends_on:
+      - ollama-backend
+
+  cartracker:
+    build: ./car_tracker
+    container_name: car_tracking_streamlit
+    ports:
+      - "18502:8501"
+    volumes:
+      - ./car_tracker:/app:delegated
+      - ./yolo_models:/root/.cache:delegated
+    restart: unless-stopped
+    devices:
+      - "/dev/dri"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia # Expose CUDA acceleration
+              count: 1
+              capabilities: [ gpu ]
+    networks:
+      - demo_net
+  landing:
+    build: ./landing
+    container_name: demo_landing
+    ports:
+      - "8500:8500"
+    environment:
+      - HOSTNAME=192.168.27.13
+    volumes:
+      - ./landing:/app:delegated
+    networks:
+      - demo_net
+  ollama-assistant:
+    build:
+      context: ./streamlit_apps
+      dockerfile: dockerfile
+    container_name: streamlit_ollama_assistant
+    environment:
+      - MODEL_NAME=qwen2.5vl:7b
+      - CODING_MODEL_NAME=qwen3-coder:30b
+      - BASE_URL=http://ollama-backend:11434
+    ports:
+      - "8503:8501"
+    volumes:
+      - ./streamlit_apps:/app:delegated
+    command: streamlit run main.py
+    networks:
+      - demo_net
+    depends_on:
+      - ollama-backend
+
+  chatgpt-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    volumes:
+      - open-webui:/app/backend/data
+      - ./openwebui_docs:/app/backend/data/docs/:delegated
+    ports:
+      - 34000:8080
+    environment:
+      - OLLAMA_BASE_URL=http://ollama-backend:11434/
+      - WEBUI_SECRET_KEY=
+    networks:
+      - demo_net
+    depends_on:
+      - ollama-backend
+
+  flowise:
+    image: flowiseai/flowise:latest
+    restart: unless-stopped
+    environment:
+      - PORT=3000
+      - CORS_ORIGINS=*
+      - IFRAME_ORIGINS=*
+      - FLOWISE_USERNAME=${FLOWISE_USERNAME}
+      - FLOWISE_PASSWORD=${FLOWISE_PASSWORD}
+      - FLOWISE_FILE_SIZE_LIMIT=${FLOWISE_FILE_SIZE_LIMIT}
+      - DEBUG=${DEBUG}
+      - DATABASE_PATH=${DATABASE_PATH}
+      - DATABASE_TYPE=${DATABASE_TYPE}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_SSL=${DATABASE_SSL}
+      - DATABASE_SSL_KEY_BASE64=${DATABASE_SSL_KEY_BASE64}
+      - APIKEY_PATH=${APIKEY_PATH}
+      - SECRETKEY_PATH=${SECRETKEY_PATH}
+      - FLOWISE_SECRETKEY_OVERWRITE=${FLOWISE_SECRETKEY_OVERWRITE}
+      - LOG_LEVEL=${LOG_LEVEL}
+      - LOG_PATH=${LOG_PATH}
+      - BLOB_STORAGE_PATH=${BLOB_STORAGE_PATH}
+      - DISABLE_FLOWISE_TELEMETRY=True
+      - MODEL_LIST_CONFIG_JSON=${MODEL_LIST_CONFIG_JSON}
+    ports:
+      - '33000:3000'
+    volumes:
+      - flowise:/root/.flowise
+      - ./openwebui_docs:/docs/:delegated
+    depends_on:
+      - ollama-backend
+    networks:
+      - demo_net
+
+  comfy:
+    build:
+      context: ./comfyui
+      dockerfile: dockerfile
+    container_name: comfy
+    restart: unless-stopped
+    devices:
+      - "/dev/dri"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia # Expose CUDA acceleration
+              count: 1
+              capabilities: [ gpu ]
+    shm_size: "14g"
+    ports:
+      - "8188:8188"
+    volumes:
+      - ./comfy_models:/opt/comfy/ComfyUI/models:delegated
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp=unconfined
+    command: tail -f /dev/null
+    networks:
+      - demo_net
+
+  whybot:
+    build: ./whybot
+    environment:
+      - OLLAMA_HOST=http://ollama-backend:11434
+      - OLLAMA_MODEL=qwen2.5vl:7b
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://postgres:postgres@whybot_db:5432/postgres
+    ports:
+      - "6823:6823"
+    volumes:
+      - ./whybot/app:/app/app
+      - ./whybot/server:/app/server
+      - ./whybot/server/prisma:/app/server/prisma
+      - /app/app/node_modules
+      - /app/server/node_modules
+    depends_on:
+      - whybot_db
+      - vite
+      - ollama-backend
+    networks:
+      - demo_net
+  whybot_db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - whybotdata:/var/lib/postgresql/data
+    networks:
+      - demo_net
+  vite:
+    image: node:20
+    working_dir: /app
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 3003"
+    volumes:
+      - ./whybot/app:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - whybot_db
+    networks:
+      - demo_net
+  whybot_nginx:
+    image: nginx:alpine
+    ports:
+      - "3003:80"
+    volumes:
+      - ./whybot/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - vite
+      - whybot
+      - whybot_db
+    networks:
+      - demo_net
+
+networks:
+  demo_net:
+    driver: bridge
+
+volumes:
+  open-webui: {}
+  flowise: {}
+  whybotdata: {}

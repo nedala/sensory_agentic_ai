@@ -1,0 +1,7 @@
+FROM python:3.12-slim
+WORKDIR /app
+RUN pip install --no-cache-dir mkdocs-material mkdocs-material-extensions mkdocs-macros-plugin
+COPY . .
+EXPOSE 8500
+VOLUME [ "/app" ]
+CMD ["mkdocs", "serve", "--dev-addr", "0.0.0.0:8500", "--livereload"]

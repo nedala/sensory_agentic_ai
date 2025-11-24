@@ -1,0 +1,35 @@
+# --- Core App Dependencies ---
+streamlit
+streamlit-antd-components
+pandas
+pydub
+numpy
+scipy
+packaging
+
+# --- Logging ---
+concurrent-log-handler
+
+# --- Whisper (from OpenAI Whisper original repo) ---
+openai-whisper
+
+# --- HuggingFace ---
+huggingface_hub
+transformers
+tokenizers
+
+nemo_toolkit[asr]
+
+# --- LangChain + LLM Orchestration ---
+langchain
+langchain-experimental
+langgraph
+
+# --- Optional: If you use Ollama ---
+langchain-ollama
+
+# --- Triton (optional; only needed for GPU acceleration) ---
+triton
+
+# --- Setuptools (safe upgrade for some pip installs) ---
+setuptools

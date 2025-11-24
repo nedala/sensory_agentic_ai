@@ -1,0 +1,6 @@
+pyaudio
+websockets
+numpy
+av
+uvicorn
+fastapi

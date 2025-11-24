@@ -1,0 +1,17 @@
+.fat-path {
+  opacity: 0;
+  stroke-dasharray: none !important;
+  stroke-width: 60px;
+}
+
+.contains-path-and-arrow:hover {
+  cursor: url("../assets/scissor.png"), auto;
+}
+
+.contains-path-and-arrow:hover > defs > marker > polyline {
+  stroke: red !important;
+}
+
+.contains-path-and-arrow:hover > .react-flow__edge-path {
+  stroke: red !important;
+}

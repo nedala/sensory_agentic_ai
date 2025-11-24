@@ -1,0 +1,17 @@
+FROM nvidia/cuda:12.2.2-runtime-ubuntu22.04
+
+ARG TARGETARCH="amd64"
+ARG GOFLAGS="'-ldflags=-w -s'"
+USER root
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y build-essential wget curl cmake libopenblas-dev liblapack-dev libblas-dev libblas3
+WORKDIR /tmp
+RUN curl -fsSL https://ollama.com/install.sh | sh
+# Add Ollama to path
+ENV PATH="/usr/local/bin:/usr/bin:/bin:${PATH}"
+EXPOSE 11434
+ENV OLLAMA_HOST 0.0.0.0
+ADD setup.sh /setup.sh
+RUN chmod +x /setup.sh
+CMD [ "ollama" ]

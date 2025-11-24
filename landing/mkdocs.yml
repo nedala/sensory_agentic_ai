@@ -1,0 +1,59 @@
+
+site_name: Analytics Central
+site_url: https://localhost
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: light-blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: light-blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.top
+    - navigation.tabs
+    - navigation.sections
+    - content.code.copy
+    - content.tabs.link
+    - navigation.footer
+    - toc.integrate
+
+extra_css:
+  - 'assets/css/demo_style.css'
+
+nav:
+  - Home: index.md
+  - Analytical: analytical.md
+  - Sensory: sensory.md
+  - Generative: generative.md
+  - Agentic: agentic.md
+
+markdown_extensions:
+  - admonition
+  - footnotes
+  - toc:
+      permalink: true
+  - attr_list
+  - md_in_html
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search
+  - macros:
+      include_env:
+        - HOSTNAME

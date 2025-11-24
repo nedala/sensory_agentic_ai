@@ -1,0 +1,20 @@
+# Custom tracker config (occlusion-tolerant)
+model: yolo11s-seg.pt
+tracker_type: botsort
+
+# --- Association thresholds ---
+match_iou_thresh: 0.05       # allow matching even with low overlap (side views)
+track_high_thresh: 0.05      # accept very low-confidence detections for update
+track_low_thresh: 0.01
+new_track_thresh: 0.05       # allow starting new tracks at low conf (for partials)
+
+# --- Track retention ---
+track_buffer: 30            # extend lifespan of inactive tracks
+match_thresh: 0.1            # relax distance threshold for association
+fuse_score: True
+
+# --- ReID and motion settings ---
+gmc_method: sparseOptFlow
+proximity_thresh: 0.15        # reduce IoU requirement for valid ReID match
+appearance_thresh: 0.5       # relax visual similarity matching
+with_reid: True

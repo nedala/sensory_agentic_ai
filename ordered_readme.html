@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ordered_readme.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="ai-demo-central">AI Demo Central</h1>
+<p>A guided tour of Sensory AI, Generative AI, and Agentic AI</p>
+<hr>
+<h2 id="1-how-to-use-this-guide">1. How to Use This Guide</h2>
+<p>This README is designed for non technical audiences who want to:</p>
+<ul>
+<li>Understand what each demo does in plain language.</li>
+<li>See why each capability matters for the business.</li>
+<li>Start the demos with a single command where possible.</li>
+<li>Browse screenshots that tell a story without reading code.</li>
+</ul>
+<p>The flow is hierarchical:</p>
+<ol>
+<li>Gallery overview (all four pillars, including Analytical AI).</li>
+<li>Sensory AI deep dives (see, hear, read the world).</li>
+<li>Generative AI deep dives (create text, media, code, and insights).</li>
+<li>Agentic AI deep dives (orchestrate tasks and workflows).</li>
+</ol>
+<p>Analytical AI appears in the overview gallery but is not expanded in detail here, in order to keep the focus on live experiential demos.</p>
+<p>Wherever possible, exact <code>docker compose</code> commands are included to start services.</p>
+<blockquote>
+<p>If the reader is not the person running Docker, this guide can still serve as an “airplane book” that explains the capabilities while another operator runs the commands.</p>
+</blockquote>
+<hr>
+<h2 id="2-gallery-overview-the-four-pillars">2. Gallery Overview: The Four Pillars</h2>
+<p>The portal home page is the single entry point.</p>
+<pre class="hljs"><code><div>http://localhost:8500
+</div></code></pre>
+<p>Start or restart it with:</p>
+<pre class="hljs"><code><div>docker compose -f docker-compose.yml up -d --build landing
+</div></code></pre>
+<p>Once it is running, it can be opened in a browser to reveal a gallery of cards representing the four pillars of the platform.</p>
+<img src="screenshots/00_landing_page.png" alt="Portal home" style="max-width:80%; display:block; margin:0 auto;" />
+<h3 id="21-analytical-ai-overview-only">2.1 Analytical AI (overview only)</h3>
+<p>Analytical AI covers classic machine learning over structured data:</p>
+<ul>
+<li>Forecasting (demand, revenue, risk).</li>
+<li>Scoring (propensity, churn, next best action).</li>
+<li>Cohort analysis and segmentation.</li>
+<li>Dashboards and enterprise search over tables.</li>
+</ul>
+<p>In this release, Analytical AI is represented primarily in navigation and supporting documentation, rather than as the centerpiece of the live demos. It is often sufficient to note that structured machine learning is already well understood, and that differentiation in this demo suite comes from the next three pillars.</p>
+<h3 id="22-sensory-ai">2.2 Sensory AI</h3>
+<p>Sensory AI systems extract meaning from images, videos, documents, and audio:</p>
+<ul>
+<li>Turning scanned documents into searchable text.</li>
+<li>Transcribing calls and meetings into notes and summaries.</li>
+<li>Tracking objects in video (for traffic, safety, operations).</li>
+<li>Capturing field data on a mobile device.</li>
+</ul>
+<p>The sequence starts with Sensory AI demos, because they show AI perceiving the real world.</p>
+<h3 id="23-generative-ai">2.3 Generative AI</h3>
+<p>Generative AI systems create new content:</p>
+<ul>
+<li>Text: chat, summarization, translation, research.</li>
+<li>Media: images and video.</li>
+<li>Code: assistants that move from ticket to deployment.</li>
+<li>Slides and reports built from knowledge bases.</li>
+</ul>
+<p>These demos showcase how large language models and diffusion models can amplify human work.</p>
+<h3 id="24-agentic-ai">2.4 Agentic AI</h3>
+<p>Agentic AI systems do not just respond to prompts. They:</p>
+<ul>
+<li>Read and understand inputs.</li>
+<li>Plan multi step workflows.</li>
+<li>Call tools and APIs.</li>
+<li>Take actions with traceability and guardrails.</li>
+</ul>
+<p>Agentic patterns appear inside several demos (Meeting AI, deep research, Flowise, demand letter parsing), and later sections show how these building blocks combine into cohesive agent flows.</p>
+<hr>
+<h2 id="3-sensory-ai-deep-dives">3. Sensory AI Deep Dives</h2>
+<p>Sensory AI is the natural starting point for the demo story.</p>
+<p>A concise framing line:</p>
+<blockquote>
+<p>“First, AI is taught to see, hear, and read the world responsibly. Once reality is perceived, insights and actions can follow with confidence.”</p>
+</blockquote>
+<h3 id="31-sensory-ai-demo-map">3.1 Sensory AI Demo Map</h3>
+<p>The following table acts as a quick mental map.</p>
+<table>
+<thead>
+<tr>
+<th>Demo</th>
+<th>What it does</th>
+<th>How to start</th>
+<th>Where to open</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Case Manager (AI at the Edge)</td>
+<td>Mobile app for capturing cases in the field (notes, voice, documents, photos, contacts)</td>
+<td>Install APK on an Android device</td>
+<td>On the device, open Case Manager</td>
+</tr>
+<tr>
+<td>Docling OCR &amp; Document Parsing</td>
+<td>Browser based OCR and layout aware parsing for PDFs and images</td>
+<td><code>docker compose -f docker-compose.yml up -d docling</code></td>
+<td><code>http://localhost:5001/ui/</code></td>
+</tr>
+<tr>
+<td>Real Time Transcription (WhisperLive)</td>
+<td>Live speech to text in the browser</td>
+<td><code>docker compose -f docker-compose.yml up -d whisperlive</code></td>
+<td><code>http://localhost:8501</code></td>
+</tr>
+<tr>
+<td>Meeting AI (Multimedia Intelligence)</td>
+<td>On device meeting assistant: diarization, transcripts, summaries</td>
+<td><code>docker compose -f docker-compose.yml up -d meeting_ai</code> (name may vary)</td>
+<td><code>http://localhost:3880</code></td>
+</tr>
+<tr>
+<td>Video Intelligence (Traffic Tracking)</td>
+<td>Real time vehicle segmentation and tracking from video</td>
+<td><code>docker compose -f docker-compose.yml up -d traffic_tracker</code> (name may vary)</td>
+<td>Streamlit or app URL for tracker</td>
+</tr>
+</tbody>
+</table>
+<p>For non technical audiences, the emphasis can remain on outcomes rather than ports and implementation details.</p>
+<hr>
+<h3 id="32-ai-at-the-edge-case-manager-app">3.2 AI at the Edge: Case Manager App</h3>
+<h4 id="321-concept">3.2.1 Concept</h4>
+<p>Field staff rarely sit in front of a laptop. Typical activities include:</p>
+<ul>
+<li>Walking job sites.</li>
+<li>Inspecting assets.</li>
+<li>Meeting customers.</li>
+<li>Collecting messy, multi format information.</li>
+</ul>
+<p>The Case Manager app gives each user a single “digital binder” per case, where all relevant information can be captured on the go and later fed into downstream AI systems.</p>
+<p>Each case functions like a digital folder that can hold:</p>
+<ul>
+<li>Text notes.</li>
+<li>Voice memos.</li>
+<li>Scanned documents and file attachments.</li>
+<li>Contacts.</li>
+<li>Handwritten ink notes with recognition.</li>
+<li>Photos and other multimedia.</li>
+</ul>
+<h4 id="322-installation-non-technical-path">3.2.2 Installation (non technical path)</h4>
+<p>Developer tools are not required if an APK has already been built.</p>
+<ol>
+<li>Obtain the APK file, for example <code>case_manager_nov_4.apk</code> from the repository.</li>
+<li>On an Android phone or tablet, copy or download the APK.</li>
+<li>On the device, allow installation from “unknown apps” for the browser or file manager that will be used.</li>
+<li>Tap the APK in the Downloads list or file manager.</li>
+<li>Accept installation and required permissions (camera, microphone, storage, NFC if used).</li>
+<li>Open the Case Manager icon once installation completes.</li>
+</ol>
+<p>Relevant files in the <code>assets/</code> folder:</p>
+<ul>
+<li><a href="landing/docs/assets/case_manager_nov_4.apk">Case Manager APK</a></li>
+<li><a href="landing/docs/assets/Installation%20Guide%20for%20the%20Case%20Manager%20App.pdf">Installation Guide for the Case Manager App (PDF)</a></li>
+<li><a href="landing/docs/assets/Usage%20Guide%20for%20the%20Case%20Manager%20App.pdf">Usage Guide for the Case Manager App (PDF)</a></li>
+</ul>
+<h4 id="323-key-capabilities">3.2.3 Key capabilities</h4>
+<p>When the app opens, a “case” appears as the central unit of organization.</p>
+<p>Within a case it is possible to:</p>
+<ul>
+<li>Create text notes for quick thoughts.</li>
+<li>Record voice memos for interviews or instructions.</li>
+<li>Scan documents such as business cards, memos, or blueprints.</li>
+<li>Import or create contacts related to the case.</li>
+<li>Draw ink notes with a finger or stylus and let the app recognize handwriting.</li>
+<li>Capture photos or videos and attach them to the case.</li>
+<li>Export the entire case as JSON for downstream systems.</li>
+<li>Share contact details via NFC, AirDrop, or email.</li>
+</ul>
+<p>This can be positioned as “sensory on the edge”: the device collects rich data that can later be processed by Sensory AI, Generative AI, and Analytical AI components.</p>
+<hr>
+<h3 id="33-docling-ocr--document-parsing">3.3 Docling OCR &amp; Document Parsing</h3>
+<h4 id="331-concept">3.3.1 Concept</h4>
+<p>Many organizations are full of legacy PDFs, scans, and images that behave like “dark data”. Docling translates these into structured, searchable content.</p>
+<p>Users can:</p>
+<ul>
+<li>Drag and drop PDF, image, or Office files into the browser.</li>
+<li>Visually inspect OCR output.</li>
+<li>Review extracted text, layout, and tables.</li>
+<li>Send the same extraction logic to downstream systems via an API.</li>
+</ul>
+<p>Sample documents in the <code>assets/</code> folder:</p>
+<ul>
+<li><a href="landing/docs/assets/sample_visual.png">Sample visual document (PNG)</a></li>
+<li><a href="landing/docs/assets/visual_parsing.pdf">Visual parsing example (PDF)</a></li>
+</ul>
+<h4 id="332-starting-the-service">3.3.2 Starting the service</h4>
+<pre class="hljs"><code><div>docker compose -f docker-compose.yml up -d docling
+</div></code></pre>
+<p>Open the UI:</p>
+<pre class="hljs"><code><div>http://localhost:5001/ui/
+</div></code></pre>
+<h4 id="333-screenshots">3.3.3 Screenshots</h4>
+<p>Main Docling UI with upload area and preview panel:</p>
+<img src="screenshots/23_docling_ui.png" alt="Docling UI" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Extracted contents for a specific document, with visible layout and text:</p>
+<img src="screenshots/24_docling_ui.png" alt="Docling extraction" style="max-width:80%; display:block; margin:0 auto;" />
+<p>API documentation showing available routes for integration:</p>
+<img src="screenshots/25_docling_api.png" alt="Docling API" style="max-width:80%; display:block; margin:0 auto;" />
+<hr>
+<h3 id="34-real-time-transcription-whisperlive">3.4 Real Time Transcription (WhisperLive)</h3>
+<h4 id="341-concept">3.4.1 Concept</h4>
+<p>Enterprises run on conversations: sales calls, support lines, interviews, and internal meetings. Much of that value disappears because it is not captured.</p>
+<p>Real Time Transcription turns live speech into text on the fly in the browser.</p>
+<h4 id="342-starting-the-service">3.4.2 Starting the service</h4>
+<pre class="hljs"><code><div>docker compose -f docker-compose.yml up -d whisperlive
+</div></code></pre>
+<p>Open the UI:</p>
+<pre class="hljs"><code><div>http://localhost:8501
+</div></code></pre>
+<p>If the demo runs from a jump host or remote server and browser microphone permissions are required, SSH tunnels can be configured as described in the Sensory AI documentation. For local demonstrations, the URL can be opened directly.</p>
+<h4 id="343-screenshots">3.4.3 Screenshots</h4>
+<p>Live transcription canvas, with text appearing as speech is detected:</p>
+<img src="screenshots/31_near_realtime_transcription.png" alt="Near real time transcription" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Foreign language example, demonstrating language detection and multilingual capability:</p>
+<img src="screenshots/32_near_realtime_transcription_foreign_language.png" alt="Foreign language transcription" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Browser extension installation for toolbar based access (Chrome or Edge):</p>
+<img src="screenshots/32_chrome_edge_extension_installation.png" alt="Extension install" style="max-width:80%; display:block; margin:0 auto;" />
+<hr>
+<h3 id="35-meeting-ai-multimedia-intelligence">3.5 Meeting AI (Multimedia Intelligence)</h3>
+<h4 id="351-concept">3.5.1 Concept</h4>
+<p>Rather than taking manual notes in meetings, participants can:</p>
+<ul>
+<li>Record audio or screen captures.</li>
+<li>Allow Meeting AI to separate speakers.</li>
+<li>Generate transcripts and structured summaries.</li>
+<li>Keep processing local for privacy.</li>
+</ul>
+<p>Meeting AI is a local web application that accepts recorded meetings and produces:</p>
+<ul>
+<li>High quality transcripts.</li>
+<li>Speaker diarization and labels.</li>
+<li>Topic centric summaries.</li>
+<li>Suggested action items.</li>
+</ul>
+<p>Sample meeting recordings in the <code>assets/</code> folder:</p>
+<ul>
+<li><a href="landing/docs/assets/DeGrasse.webm">DeGrasse.webm</a></li>
+<li><a href="landing/docs/assets/Goodall.webm">Goodall.webm</a></li>
+<li><a href="landing/docs/assets/Teresa.webm">Teresa.webm</a></li>
+</ul>
+<h4 id="352-starting-the-service">3.5.2 Starting the service</h4>
+<p>In <code>docker-compose.yml</code>, the service backing this UI is typically named <code>meeting_ai</code>:</p>
+<pre class="hljs"><code><div>docker compose -f docker-compose.yml up -d meeting_ai
+</div></code></pre>
+<p>Open the UI:</p>
+<pre class="hljs"><code><div>http://localhost:3880
+</div></code></pre>
+<h4 id="353-screenshots">3.5.3 Screenshots</h4>
+<p>Recording or uploading a meeting or screen capture:</p>
+<img src="screenshots/41_meeting_ai_record_screencast.png" alt="Record screencast" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Per speaker segmentation and labels:</p>
+<img src="screenshots/42_meeting_ai_speaker_diarization.png" alt="Speaker diarization" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Detailed per speaker transcript:</p>
+<img src="screenshots/43_meeting_ai_speaker_transcription.png" alt="Speaker transcription" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Summaries derived from the transcript, including topics and actions:</p>
+<img src="screenshots/45_meeting_ai_summarization_from_transcript.png" alt="Summarization" style="max-width:80%; display:block; margin:0 auto;" />
+<p>On device summarization for privacy sensitive or air gapped environments:</p>
+<img src="screenshots/47_meeting_ai_summarization_on_device.png" alt="On device summarization" style="max-width:80%; display:block; margin:0 auto;" />
+<hr>
+<h3 id="36-video-intelligence-traffic-tracking">3.6 Video Intelligence (Traffic Tracking)</h3>
+<h4 id="361-concept">3.6.1 Concept</h4>
+<p>In many operations contexts, individual frames of video are less important than counts, patterns, bottlenecks, and anomalies.</p>
+<p>The video tracking demo illustrates how the system can be used to:</p>
+<ul>
+<li>Detect and segment vehicles in a live or recorded feed.</li>
+<li>Track each object with a stable identifier.</li>
+<li>Build analytics on top of those tracks (volume, dwell time, lane usage).</li>
+</ul>
+<p>Sample traffic videos in the <code>assets/</code> folder:</p>
+<ul>
+<li><a href="landing/docs/assets/highway.mp4">highway.mp4</a></li>
+<li><a href="landing/docs/assets/highway_processed_output.mp4">highway_processed_output.mp4</a></li>
+</ul>
+<h4 id="362-starting-the-service">3.6.2 Starting the service</h4>
+<p>The tracker is typically implemented as a small web app (often Streamlit) backed by a YOLO segmentation model. In <code>docker-compose.yml</code>, look for a service referencing YOLO or traffic tracking and start it, for example:</p>
+<pre class="hljs"><code><div>docker compose -f docker-compose.yml up -d traffic_tracker
+</div></code></pre>
+<p>Then open the configured URL and load the sample highway video.</p>
+<h4 id="363-screenshots">3.6.3 Screenshots</h4>
+<p>Live tracking over a traffic video, with bounding boxes or masks:</p>
+<img src="screenshots/50_streamlit_car_tracker_in_realtime_traffic_video.png" alt="Car tracker" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Segmentation masks that clearly separate each vehicle from the background:</p>
+<img src="screenshots/51_yolo_tracking_car_masks_realtime.png" alt="YOLO masks" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Analytics oriented overlays showing IDs and trajectories:</p>
+<img src="screenshots/53_yolo_tracking_car_masks_realtime_output.png" alt="Tracking output" style="max-width:80%; display:block; margin:0 auto;" />
+<hr>
+<h2 id="4-generative-ai-deep-dives">4. Generative AI Deep Dives</h2>
+<p>Once perception is established through Sensory AI, the narrative progresses to value creation: text, media, code, and research.</p>
+<p>A simple framing line:</p>
+<blockquote>
+<p>“Now that the system can see and hear what is happening, it can be asked to summarize, translate, ideate, and even propose software changes.”</p>
+</blockquote>
+<h3 id="41-generative-ai-demo-map">4.1 Generative AI Demo Map</h3>
+<table>
+<thead>
+<tr>
+<th>Demo</th>
+<th>What it does</th>
+<th>Typical URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ollama LLMs</td>
+<td>Runs open source LLMs locally for chat, Q&amp;A, and structured output</td>
+<td>API often at <code>http://localhost:11434</code>; translation assistant at <code>http://localhost:8503/translation_assistant</code></td>
+</tr>
+<tr>
+<td>OpenWebUI</td>
+<td>ChatGPT style interface over local or remote models</td>
+<td><code>http://localhost:34000</code></td>
+</tr>
+<tr>
+<td>ComfyUI (Stable Diffusion)</td>
+<td>Node based canvas for image and multimedia generation</td>
+<td><code>http://localhost:8188</code></td>
+</tr>
+<tr>
+<td>Coding Assistant</td>
+<td>Moves from JIRA ticket to Git and deployment with AI help</td>
+<td><code>http://localhost:8503/coding_assistant</code></td>
+</tr>
+<tr>
+<td>Whybot / Deep Research</td>
+<td>Multi step research agent (why, what, who, when, where, how)</td>
+<td><code>http://localhost:3003</code></td>
+</tr>
+<tr>
+<td>Search Assistant</td>
+<td>Generative search interface over complex data</td>
+<td>Environment specific</td>
+</tr>
+<tr>
+<td>PowerPoint Agent</td>
+<td>Produces “10 second” slide decks inside PowerPoint</td>
+<td>Appears as a ribbon add-in</td>
+</tr>
+<tr>
+<td>Flowise RAG Builder</td>
+<td>Visual canvas for retrieval augmented agents</td>
+<td><code>http://localhost:33000</code></td>
+</tr>
+<tr>
+<td>Demand Letter Parsing</td>
+<td>Multimodal extraction and response for insurance demand letters</td>
+<td><code>http://localhost:8503/demand_letters</code></td>
+</tr>
+<tr>
+<td>Data Cataloging Agent</td>
+<td>Automatically annotates tables and data warehouses</td>
+<td>Part of data and search stack</td>
+</tr>
+<tr>
+<td>SQL Assistant</td>
+<td>Conversational interface that produces SQL and results</td>
+<td>Part of analytics and catalog stack</td>
+</tr>
+</tbody>
+</table>
+<p>The exact services and ports are defined in <code>docker-compose.yml</code>. A common pattern for bringing up several generative components together might look like:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Example only. Adjust service names to match docker-compose.yml.</span>
+docker compose -f docker-compose.yml up -d ollama openwebui comfyui flowise streamlit_apps
+</div></code></pre>
+<hr>
+<h3 id="42-ollama-llms-for-everyone">4.2 Ollama: LLMs for Everyone</h3>
+<h4 id="421-concept">4.2.1 Concept</h4>
+<p>Ollama hosts large language models on enterprise infrastructure, which enables:</p>
+<ul>
+<li>Independence from external APIs.</li>
+<li>Control over data privacy and retention.</li>
+<li>Flexibility to adopt new open source models quickly.</li>
+</ul>
+<p>Typical use cases include:</p>
+<ul>
+<li>Chat and Q&amp;A over internal content.</li>
+<li>Summarization and rewriting.</li>
+<li>Translation between languages.</li>
+<li>Structured extraction into JSON for downstream systems.</li>
+</ul>
+<h4 id="422-screenshots">4.2.2 Screenshots</h4>
+<p>Concept slide summarizing private, local models:</p>
+<img src="screenshots/60_Ollama_For_Everyone.png" alt="Ollama for everyone" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Casting the model into human like “roles” (advisor, analyst, translator):</p>
+<img src="screenshots/61_Ollama_Serving_Human_Roles.png" alt="Human roles" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Focused translation scenario:</p>
+<img src="screenshots/62_Ollama_Serving_Translator_Role.png" alt="Translator role" style="max-width:80%; display:block; margin:0 auto;" />
+<hr>
+<h3 id="43-openwebui-chatgpt-style-experience-on-premise">4.3 OpenWebUI: ChatGPT Style Experience On Premise</h3>
+<h4 id="431-concept">4.3.1 Concept</h4>
+<p>OpenWebUI is a browser based interface that looks and feels like ChatGPT but runs on enterprise infrastructure. It provides:</p>
+<ul>
+<li>Multi model chat (for example, switching between different Ollama models).</li>
+<li>Persistent conversations.</li>
+<li>Memory and history.</li>
+<li>Support for knowledge bases and prompt libraries.</li>
+</ul>
+<p>A sample resume used as a knowledge file is included in <code>assets/</code>:</p>
+<ul>
+<li><a href="landing/docs/assets/resume.md">resume.md</a></li>
+</ul>
+<h4 id="432-screenshots">4.3.2 Screenshots</h4>
+<p>Main chat interface, with a familiar ChatGPT style experience:</p>
+<img src="screenshots/63_OpenWebUI_ChatGPT_Clone.png" alt="ChatGPT clone" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Multi turn conversations with saved outcomes:</p>
+<img src="screenshots/64_OpenWebUI_Multiturn_MemoryChatOutcomes.png" alt="Multi turn and memory" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Management of complex knowledge agents:</p>
+<img src="screenshots/65_ManageComplexKnowledgeAgents_OpenWebUI.png" alt="Knowledge agents" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Custom prompt shortcuts functioning as a lightweight prompt library:</p>
+<img src="screenshots/66_CreateCustomPromptShortcuts_PoorMansPromptLibrary.png" alt="Prompt shortcuts" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Enterprise knowledge bases, including connectors such as SharePoint:</p>
+<img src="screenshots/67_Create_Enterprise_Knowledge_Bases_Including_Sharepoint_O.png" alt="Enterprise knowledge bases" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Custom models seeded with enterprise knowledge:</p>
+<img src="screenshots/68_Create_Custom_Models_Seed_Agents_with_Knowledge.png" alt="Custom models and seed agents" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Multimodal inputs and reinforcement feedback:</p>
+<img src="screenshots/69_Multimodal_Inputs_Reinforcement_Feedback.png" alt="Multimodal feedback" style="max-width:80%; display:block; margin:0 auto;" />
+<hr>
+<h3 id="44-comfyui-visual-multimedia-generation">4.4 ComfyUI: Visual Multimedia Generation</h3>
+<h4 id="441-concept">4.4.1 Concept</h4>
+<p>ComfyUI brings generative media workflows into a visual canvas. Instead of writing code, users can:</p>
+<ul>
+<li>Drag and drop nodes.</li>
+<li>Connect models and processors.</li>
+<li>Tweak parameters.</li>
+<li>Generate images or video variations.</li>
+</ul>
+<p>A sample workflow is provided in <code>assets/</code>:</p>
+<ul>
+<li><a href="landing/docs/assets/flux_schnell.json">flux_schnell.json</a></li>
+</ul>
+<p>This file can be imported into ComfyUI and executed once the corresponding model weights are downloaded.</p>
+<h4 id="442-screenshots">4.4.2 Screenshots</h4>
+<p>Starter canvas templates that can be loaded and customized:</p>
+<img src="screenshots/71_wysiwyg_comfy_canvas_temlates.png" alt="Canvas templates" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Graphical model manager and module installation:</p>
+<img src="screenshots/72_graphical_module_model_comfy_installs.png" alt="Model manager" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Assembled pipelines connecting prompts, models, and outputs:</p>
+<img src="screenshots/73_assembly_comfy_pipeline_canvas.png" alt="Pipeline assembly" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Generated multimedia outputs:</p>
+<img src="screenshots/74_generate_realistic_multimedia_images_videos.png" alt="Generated multimedia" style="max-width:80%; display:block; margin:0 auto;" />
+<hr>
+<h3 id="45-coding-assistant-from-ticket-to-cloud">4.5 Coding Assistant: From Ticket to Cloud</h3>
+<h4 id="451-concept">4.5.1 Concept</h4>
+<p>Software delivery is often slowed by handoffs:</p>
+<ul>
+<li>Product management writes requirements.</li>
+<li>Engineers translate those into code.</li>
+<li>DevOps teams handle deployment.</li>
+</ul>
+<p>The Coding Assistant shortens this loop by:</p>
+<ul>
+<li>Reading tickets from systems such as JIRA.</li>
+<li>Proposing implementation plans.</li>
+<li>Drafting code.</li>
+<li>Assisting with deployment scripts.</li>
+</ul>
+<h4 id="452-screenshots">4.5.2 Screenshots</h4>
+<p>End to end flow from ticket to deployed code in hours rather than sprints:</p>
+<img src="screenshots/80_coding_assistant_from_code_to_cloud_in_hours_not_sprints.png" alt="Code to cloud" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Planning, estimation, and fulfillment across roles:</p>
+<img src="screenshots/81_coding_assistant_from_planning_to_fulfillment.png" alt="Planning to fulfillment" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Consistent archetypes and multi turn steering of the assistant:</p>
+<img src="screenshots/82_consistent_code_archetypes_and_multiturn_steering.png" alt="Code archetypes" style="max-width:80%; display:block; margin:0 auto;" />
+<hr>
+<h3 id="46-deep-research-whybot-and-search-companion">4.6 Deep Research (Whybot and Search Companion)</h3>
+<h4 id="461-concept">4.6.1 Concept</h4>
+<p>Traditional search yields links, whereas deep research tools deliver synthesized understanding.</p>
+<p>The deep research demos illustrate an agent that:</p>
+<ul>
+<li>Breaks a question into sub questions.</li>
+<li>Iteratively explores relevant sources.</li>
+<li>Consolidates findings into structured reports.</li>
+<li>Supports follow up questions and deeper probes.</li>
+</ul>
+<h4 id="462-screenshots">4.6.2 Screenshots</h4>
+<p>“Pearl growing” infobot progressively building a richer picture of a topic:</p>
+<img src="screenshots/83_deep_research_pearl_growing_infobot.png" alt="Pearl growing research" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Multi step probing into why, what, how, when, who, and where:</p>
+<img src="screenshots/84_progressively_probe_deeper_deeper_why_what_how_when_who_where.png" alt="Progressive probing" style="max-width:80%; display:block; margin:0 auto;" />
+<hr>
+<h3 id="47-powerpoint-agent-ten-second-slides">4.7 PowerPoint Agent: Ten-Second Slides</h3>
+<h4 id="471-concept">4.7.1 Concept</h4>
+<p>Executives and managers spend significant time preparing slides. The PowerPoint Agent:</p>
+<ul>
+<li>Runs directly inside PowerPoint as an add-in.</li>
+<li>Accepts a short brief or topic.</li>
+<li>Generates slides in seconds.</li>
+<li>Uses organizational knowledge bases for content.</li>
+</ul>
+<h4 id="472-screenshots">4.7.2 Screenshots</h4>
+<p>Installation of the add-in into the Office suite:</p>
+<img src="screenshots/85_PowerpointAddin_Install.png" alt="Add in install" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Add-in visible inside PowerPoint:</p>
+<img src="screenshots/86_Powerpoint_Addin_Embedded_In_OfficeSuite.png" alt="Add in in Office" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Configuration window for setting up the agent and connecting knowledge:</p>
+<img src="screenshots/87_Configuration_and_Soliciting_10_second_slides_agent.png" alt="Configuration" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Slide deck generated from deep research over custom knowledge:</p>
+<img src="screenshots/88_10_Second_slides_From_deep_research_on_custom_knowledge.png" alt="Generated ten-second slides" style="max-width:80%; display:block; margin:0 auto;" />
+<hr>
+<h3 id="48-semantic-search-and-data-cataloging">4.8 Semantic Search and Data Cataloging</h3>
+<h4 id="481-concept">4.8.1 Concept</h4>
+<p>Many organizations are flooded with data but starved for context. Common challenges include:</p>
+<ul>
+<li>Tables with little or no metadata.</li>
+<li>Difficulty discovering which dataset answers which question.</li>
+</ul>
+<p>The semantic search and data cataloging stack addresses this by:</p>
+<ul>
+<li>Allowing LLMs to inspect and annotate tables.</li>
+<li>Building a living data catalog.</li>
+<li>Enabling natural language search and SQL generation.</li>
+</ul>
+<h4 id="482-screenshots">4.8.2 Screenshots</h4>
+<p>Why brittle keyword search is not enough:</p>
+<img src="screenshots/90_traditional_search_is_broken_brittle.png" alt="Traditional search is brittle" style="max-width:80%; display:block; margin:0 auto;" />
+<p>LLMs introducing deep domain expertise into search:</p>
+<img src="screenshots/91_LLMs_Apply_Their_Deep_Domain_Expertise_To_Deliver_Semantic_Search.png" alt="Semantic search" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Data without sufficient metadata:</p>
+<img src="screenshots/92_a_everyone_has_data_but_no_metadata_they_have_no_time_to_annotate.png" alt="No metadata" style="max-width:80%; display:block; margin:0 auto;" />
+<p>LLMs acting as stewards for data cataloging:</p>
+<img src="screenshots/93_let_llms_deep_inspect_and_take_over_stewarding_data_cataloging.png" alt="LLMs as stewards" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Annotated datasets enabling natural language insights:</p>
+<img src="screenshots/94_Annotated_Datasets_Attributes_Records_Allow_Natural_language_insights.png" alt="Annotated datasets" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Annotated catalogs supporting structured queries from English and deep tool usage:</p>
+<img src="screenshots/95_Annotated_Catalogs_Allow_Structured_Query_From_English_and_Deep_MCP_Insights.png" alt="Annotated catalogs" style="max-width:80%; display:block; margin:0 auto;" />
+<hr>
+<h3 id="49-flowise-visual-rag-builder">4.9 Flowise: Visual RAG Builder</h3>
+<h4 id="491-concept">4.9.1 Concept</h4>
+<p>Flowise acts as an orchestration canvas. It enables:</p>
+<ul>
+<li>Drag and drop composition of retrievers, models, and tools.</li>
+<li>Visual definition of control flow.</li>
+<li>Inline testing of prompts and flows.</li>
+<li>Deployment as APIs or web apps.</li>
+</ul>
+<p>A sample Flowise workflow in the <code>assets/</code> folder:</p>
+<ul>
+<li><a href="landing/docs/assets/ChatRAGFlow.json">ChatRAGFlow.json</a></li>
+</ul>
+<p>This file can be imported into Flowise to create a retrieval-augmented chatbot.</p>
+<h4 id="492-screenshots">4.9.2 Screenshots</h4>
+<p>Workflow composer showing how components connect:</p>
+<img src="screenshots/96_flowise_workflow_composer.png" alt="Workflow composer" style="max-width:80%; display:block; margin:0 auto;" />
+<p>WYSIWYG representation of flows:</p>
+<img src="screenshots/97_flowise_workflows_with_wysiwyg.png" alt="WYSIWYG flows" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Integrated prompt testing node:</p>
+<img src="screenshots/97_integrated_prompt_testing_flowise.png" alt="Prompt testing" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Design and deployment views for in-situ experimentation:</p>
+<img src="screenshots/98_design_and_deploy_insitu.png" alt="Design and deploy" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Deployment to existing endpoints while reusing infrastructure:</p>
+<img src="screenshots/99_deploy_to_existing_endpoints.png" alt="Deploy to endpoints" style="max-width:80%; display:block; margin:0 auto;" />
+<hr>
+<h3 id="410-demand-letter-parsing-insurance">4.10 Demand Letter Parsing (Insurance)</h3>
+<h4 id="4101-concept">4.10.1 Concept</h4>
+<p>Insurance adjusters receive complex demand letters that mix text, tables, and images. Manual reading, extraction, and response drafting is time consuming and can be inconsistent.</p>
+<p>The demand letter parsing demo:</p>
+<ul>
+<li>Accepts demand letters as PDF, image, or text.</li>
+<li>Uses a multimodal LLM to extract key entities (claimant, amounts, dates, evidence).</li>
+<li>Generates a professional acknowledgement or rebuttal letter.</li>
+<li>Displays structured JSON plus the generated response.</li>
+</ul>
+<p>Sample input in <code>assets/</code>:</p>
+<ul>
+<li><a href="landing/docs/assets/Sample_Insurance_Demand_Letter_Property_Damage.png">Sample_Insurance_Demand_Letter_Property_Damage.png</a></li>
+</ul>
+<h4 id="4102-screenshots">4.10.2 Screenshots</h4>
+<p>Initial parsing of an uploaded demand letter:</p>
+<img src="screenshots/a00_demand_letter_parse_on_demand.png" alt="Demand letter parse on demand" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Parsed structure and suggested response letter:</p>
+<img src="screenshots/a00_demand_letter_parsed_and_rebutted.png" alt="Parsed and rebutted" style="max-width:80%; display:block; margin:0 auto;" />
+<p>Lexical intelligence extracted from the document:</p>
+<img src="screenshots/a01_demand_letter_lexical_intelligence_extracted.png" alt="Lexical intelligence" style="max-width:80%; display:block; margin:0 auto;" />
+<hr>
+<h2 id="5-agentic-ai-from-capabilities-to-workflows">5. Agentic AI: From Capabilities to Workflows</h2>
+<p>Agentic AI is not a single application. It is a way of composing perception and generation into reliable workflows that act.</p>
+<p>Conceptually, an agent:</p>
+<ol>
+<li>Observes.</li>
+<li>Thinks.</li>
+<li>Plans.</li>
+<li>Acts.</li>
+<li>Learns from feedback.</li>
+</ol>
+<h3 id="51-design-considerations">5.1 Design considerations</h3>
+<p>Agentic capabilities benefit from clear guardrails:</p>
+<ul>
+<li>Every decision is traceable with logs and audit trails.</li>
+<li>Actions that change systems can be gated behind approvals.</li>
+<li>Workflows are resilient, with retries, fallbacks, and timeouts.</li>
+<li>Permissions and scopes are enforced at each tool boundary.</li>
+</ul>
+<p>These patterns build on the demos already described:</p>
+<ul>
+<li>Meeting AI behaves as an agent that reads audio, plans diarization, then produces transcripts and summaries.</li>
+<li>Deep research behaves as an agent that repeatedly asks internal sub-questions while exploring a topic.</li>
+<li>Flowise is explicitly an agent builder, wiring perception, retrieval, and action nodes.</li>
+<li>Demand letter parsing is an agent specialized for a single document-centric workflow.</li>
+</ul>
+<h3 id="52-example-agent-flows">5.2 Example agent flows</h3>
+<h4 id="521-customer-case-lifecycle">5.2.1 Customer case lifecycle</h4>
+<ol>
+<li>
+<p>A field agent uses the Case Manager app to capture photos, voice notes, and signed documents for a new case.</p>
+</li>
+<li>
+<p>Documents from the case are processed through Docling for OCR and structuring.</p>
+</li>
+<li>
+<p>A Meeting AI session with the customer is recorded and summarized.</p>
+</li>
+<li>
+<p>A Flowise-built agent orchestrates:</p>
+<ul>
+<li>Retrieval of relevant policy documents.</li>
+<li>Use of an Ollama-backed LLM to compare the case to policy.</li>
+<li>Drafting of a response using the demand letter agent where appropriate.</li>
+</ul>
+</li>
+<li>
+<p>The PowerPoint agent generates a concise internal briefing deck for review.</p>
+</li>
+</ol>
+<h4 id="522-data-stewardship-agent">5.2.2 Data stewardship agent</h4>
+<ol>
+<li>Tables and datasets are profiled by a background process.</li>
+<li>A data cataloging agent uses LLMs to infer column meanings and relationships.</li>
+<li>The agent writes annotations into the catalog.</li>
+<li>The SQL assistant and search assistant leverage these annotations to answer natural language questions such as “Show churn by region over the last six months.”</li>
+</ol>
+<p>In both examples, the agent is a composition of capabilities described earlier: perception (Sensory AI), generation (Generative AI), and action (Agentic orchestration).</p>
+<hr>
+<h2 id="6-quick-docker-compose-reference">6. Quick Docker Compose Reference</h2>
+<p>This section acts as a checklist for the most common services when preparing a demo.</p>
+<blockquote>
+<p>Adjust service names to match the <code>docker-compose.yml</code> file in the environment. The examples illustrate typical patterns.</p>
+</blockquote>
+<h3 id="61-portal-and-navigation">6.1 Portal and Navigation</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Portal landing page</span>
+docker compose -f docker-compose.yml up -d --build landing
+</div></code></pre>
+<h3 id="62-sensory-ai">6.2 Sensory AI</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Docling OCR and document parsing</span>
+docker compose -f docker-compose.yml up -d docling
+
+<span class="hljs-comment"># Real time speech to text (WhisperLive)</span>
+docker compose -f docker-compose.yml up -d whisperlive
+
+<span class="hljs-comment"># Meeting AI (service name)</span>
+docker compose -f docker-compose.yml up -d meeting_ai
+
+<span class="hljs-comment"># Video intelligence / traffic tracker (service name)</span>
+docker compose -f docker-compose.yml up -d cartracker
+</div></code></pre>
+<h3 id="63-generative-and-agentic-stack-examples">6.3 Generative and Agentic Stack (examples)</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Core model and chat stack (example)</span>
+docker compose -f docker-compose.yml up -d ollama openwebui
+
+<span class="hljs-comment"># Visual RAG and orchestration (example)</span>
+docker compose -f docker-compose.yml up -d flowise
+
+<span class="hljs-comment"># Media generation (example)</span>
+docker compose -f docker-compose.yml up -d comfyui
+
+<span class="hljs-comment"># Streamlit-based assistants: coding, demand letters, translation (example)</span>
+docker compose -f docker-compose.yml up -d streamlit_apps
+</div></code></pre>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+FROM python:3.11-slim
+WORKDIR /app
+RUN pip install --no-cache-dir streamlit streamlit-antd-components llama-index llama-index-llms-ollama pdfplumber pymupdf
+VOLUME [ "/app" ]
+EXPOSE 8501
+CMD ["streamlit", "run", "assistant.py", "--server.runOnSave", "true", "--global.developmentMode", "true"]
