@@ -6,6 +6,8 @@ services:
       - OLLAMA_HOST=0.0.0.0
       - OLLAMA_MODELS=/root/.ollama/models
     restart: unless-stopped
+    ports:
+      - "11434:11434"
     devices:
       - "/dev/dri"
     deploy:
@@ -335,6 +337,35 @@ services:
       - vite
       - whybot
       - whybot_db
+    networks:
+      - demo_net
+
+  jupyter-pyspark:
+    build:
+      context: ./tld_spark
+      dockerfile: Dockerfile
+    container_name: qwen-pyspark
+    user: root
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - NVIDIA_VISIBLE_DEVICES=all
+      - TRANSFORMERS_CACHE=/models/hf
+      - HF_HOME=/models/hf
+      - CUDA_DEVICE_MAX_CONNECTIONS=1
+    volumes:
+      - ./tld_spark:/home/jovyan/work:delegated
+      - ./data:/data:delegated
+      - ./models:/models
+    ports:
+      - "8888:8888"
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+              driver: nvidia
+              count: 1
     networks:
       - demo_net
 

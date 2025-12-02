@@ -76,25 +76,25 @@ Return ONLY a JSON object matching the exact schema below:
     "claim_number": string | null,
     "claimant_name": string | null,
     "claimant_address": string | null,
-    "claimant_contact_phone": string | null,
-    "claimant_contact_email": string | null,
-    "claimant_contact_facsimile": string | null,
-    "claimant_legal_office_information": string | null,
-    "insurance_company_representative": string | null,
-    "claim_amount": string | null,
-    "demand_letter_date": string | null,
-    "response_deadline_date": string | null,
-    "evidence_attached": array,
-    "date_of_loss": string | null,
-    "insured_property_address": string | null,
-    "insured_asset_description": string | null,
-    "policy_number": string | null,
-    "referenced_policy_language": string | null,
-    "threats_of_legal_action": string | null,
-    "requested_resolution": string | null,
-    "tone_of_letter": string | null,
-    "claimant_stated_cause_of_loss": string | null,
-    "letter_response_markdown": string | null
+    claimant_contact_phone: str | None = None
+    claimant_contact_email: str | None = None
+    claimant_contact_facsimile: str | None = None
+    claimant_legal_office_information: str | None = None
+    insurance_company_representative: str | None = None
+    claim_amount: str | None = None
+    demand_letter_date: str | None = None
+    response_deadline_date: str | None = None
+    evidence_attached: list = Field(default_factory=list)
+    date_of_loss: str | None = None
+    insured_property_address: str | None = None
+    insured_asset_description: str | None = None
+    policy_number: str | None = None
+    referenced_policy_language: str | None = None
+    threats_of_legal_action: str | None = None
+    requested_resolution: str | None = None
+    tone_of_letter: str | None = None
+    claimant_stated_cause_of_loss: str | None = None
+    letter_response_markdown: str | null
 }}
 
 Rules:
